@@ -14,7 +14,7 @@ const textureLoader = new THREE.TextureLoader()
 const earthTexture = textureLoader.load('/static/textures/earthmap.jpg')
 const cloudAlphaTexture = textureLoader.load('/static/textures/cloudalpha.jpg')
 const earthHeightTexture = textureLoader.load('/static/textures/earthbump.jpg')
-
+const oceanMap = textureLoader.load('/textures/static/earthspec.jpg')
 
 // Canvas
 const canvas = document.querySelector('canvas.webgl')
@@ -42,7 +42,7 @@ const planet = new THREE.Mesh(
     new THREE.MeshStandardMaterial({ 
         map: earthTexture,
         bumpMap: earthHeightTexture, 
-        bumpScale: 0.005
+        bumpScale: 0.005,
      })
 )
 planet.rotation.y = -1.5
@@ -74,7 +74,7 @@ gui.add(planet.rotation, 'x').min(-15).max(10).step(0.1)
 gui.add(planet.rotation, 'y').min(-15).max(10).step(0.1)
 
 // Camera
-const camera = new THREE.PerspectiveCamera(45, sizes.width / sizes.height, 1, 100)
+const camera = new THREE.PerspectiveCamera(45, sizes.width / sizes.height, 0.5, 100)
 camera.position.z = 3
 camera.lookAt(planet.position)
 scene.add(camera)
