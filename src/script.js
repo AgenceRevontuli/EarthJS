@@ -52,7 +52,7 @@ for(let i = 0; i < count; i++) {
 starsGeometry.setAttribute('position', new THREE.BufferAttribute(positions, 3))
 
 const stars = new THREE.Points(starsGeometry, starsMaterial)
-stars.position.z = -5
+stars.position.z = -8
 
 
 
@@ -163,16 +163,18 @@ const tick = () =>
     planet.rotation.y = - elapsedTime * 0.008
 
     // Animate Cloud Rotation 
-    cloud.rotation.x = - Math.sin(elapsedTime * 0.003) 
-    cloud.rotation.y = - Math.cos(elapsedTime * 0.003) 
+    cloud.rotation.x = - (elapsedTime * 0.01) 
+    cloud.rotation.y = (elapsedTime * 0.01) 
 
     // Animate Stars 
     stars.rotation.x = - Math.cos(elapsedTime * 0.001) 
     stars.rotation.y = - Math.sin(elapsedTime * 0.001)
 
     // Animate Moon 
+    moon.rotation.y = (elapsedTime * 0.1)
     moon.position.x = - (Math.cos(elapsedTime * 0.03)) * 1.5
     moon.position.z = - (Math.sin(elapsedTime * 0.03)) * 1.5
+    
 
     // Render
     renderer.render(scene, camera)
