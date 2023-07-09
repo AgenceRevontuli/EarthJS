@@ -1,9 +1,19 @@
 import * as THREE from 'three'
 import { OrbitControls } from 'three/addons/controls/OrbitControls.js'
+import * as LIL from 'lil-gui'
 
 /**
  * Base
  */
+
+// GUI 
+const gui = new LIL.GUI 
+
+// Textures 
+const textureLoader = new THREE.TextureLoader()
+const earthTexture = textureLoader.load('/static/textures/earthmap.jpg')
+const cloudAlphaTexture = textureLoader.load('/static/textures/cloudalpha.jpg')
+const earthHeightTexture = textureLoader.load('/static/textures/earthbump.jpg')
 
 // Canvas
 const canvas = document.querySelector('canvas.webgl')
@@ -18,11 +28,49 @@ const sizes = {
 const scene = new THREE.Scene()
 
 // Object
+const cloud = new THREE.Mesh(
+    new THREE.SphereGeometry(1.001, 64, 64),
+    new THREE.MeshBasicMaterial({
+        transparent: true,
+        alphaMap: cloudAlphaTexture
+    })
+)
+
 const planet = new THREE.Mesh(
     new THREE.SphereGeometry(1, 64, 64),
-    new THREE.MeshBasicMaterial({ color: 0xff0000 })
+    new THREE.MeshStandardMaterial({ 
+        map: earthTexture,
+        bumpMap: earthHeightTexture, 
+        bumpScale: 0.005
+     })
 )
-scene.add(planet)
+planet.rotation.y = -1.5
+planet.rotation.x = 0.2
+scene.add(planet, cloud)
+
+// Lights 
+const ambientLight = new THREE.PointLight('#fff', 0.1, 100)
+ambientLight.position.z = 0
+ambientLight.position.y = -7
+ambientLight.position.x = -35
+
+const sunLight = new THREE.DirectionalLight('#fff', 0.8)
+sunLight.position.x = 3
+sunLight.position.y = 1
+sunLight.position.z = 2
+scene.add(sunLight, ambientLight)
+
+// Helpers 
+const ambientLightHelper = new THREE.PointLightHelper(ambientLight, 1)
+scene.add(ambientLightHelper)
+
+// Controlers 
+gui.add(ambientLight.position, 'x').min(-25).max(10).step(0.5)
+gui.add(ambientLight.position, 'y').min(-15).max(10).step(0.5)
+gui.add(ambientLight.position, 'z').min(-15).max(10).step(0.5)
+gui.add(planet.rotation, 'z').min(-15).max(10).step(0.1)
+gui.add(planet.rotation, 'x').min(-15).max(10).step(0.1)
+gui.add(planet.rotation, 'y').min(-15).max(10).step(0.1)
 
 // Camera
 const camera = new THREE.PerspectiveCamera(45, sizes.width / sizes.height, 1, 100)
