@@ -5,8 +5,8 @@ import * as LIL from 'lil-gui'
  * Base
  */
 
-// GUI 
-const gui = new LIL.GUI 
+// // GUI 
+// const gui = new LIL.GUI 
 
 // Textures 
 const textureLoader = new THREE.TextureLoader()
@@ -108,21 +108,21 @@ const ambientLightHelper = new THREE.PointLightHelper(ambientLight, 1)
 scene.add(ambientLightHelper)
 
 // Controlers 
-gui.add(ambientLight.position, 'x').min(-25).max(10).step(0.5)
-gui.add(ambientLight.position, 'y').min(-15).max(10).step(0.5)
-gui.add(ambientLight.position, 'z').min(-15).max(10).step(0.5)
-const planetFolder = gui.addFolder('Planet')
-planetFolder.add(planet.rotation, 'z').min(-15).max(10).step(0.1)
-planetFolder.add(planet.rotation, 'x').min(-15).max(10).step(0.1)
-planetFolder.add(planet.rotation, 'y').min(-15).max(10).step(0.1)
-const moonFolder = gui.addFolder('Moon')
-moonFolder.add(moon.position, 'y').min(-15).max(10).step(0.1)
-moonFolder.add(moon.position, 'z').min(-15).max(10).step(0.1)
-moonFolder.add(moon.position, 'x').min(-15).max(10).step(0.1)
-moonFolder.add(moon.position, 'x').min(-15).max(10).step(0.1)
-moonFolder.add(moon.rotation, 'x').min(-15).max(10).step(0.1)
-moonFolder.add(moon.rotation, 'y').min(-15).max(10).step(0.1)
-moonFolder.add(moon.rotation, 'z').min(-15).max(10).step(0.1)
+// gui.add(ambientLight.position, 'x').min(-25).max(10).step(0.5)
+// gui.add(ambientLight.position, 'y').min(-15).max(10).step(0.5)
+// gui.add(ambientLight.position, 'z').min(-15).max(10).step(0.5)
+// const planetFolder = gui.addFolder('Planet')
+// planetFolder.add(planet.rotation, 'z').min(-15).max(10).step(0.1)
+// planetFolder.add(planet.rotation, 'x').min(-15).max(10).step(0.1)
+// planetFolder.add(planet.rotation, 'y').min(-15).max(10).step(0.1)
+// const moonFolder = gui.addFolder('Moon')
+// moonFolder.add(moon.position, 'y').min(-15).max(10).step(0.1)
+// moonFolder.add(moon.position, 'z').min(-15).max(10).step(0.1)
+// moonFolder.add(moon.position, 'x').min(-15).max(10).step(0.1)
+// moonFolder.add(moon.position, 'x').min(-15).max(10).step(0.1)
+// moonFolder.add(moon.rotation, 'x').min(-15).max(10).step(0.1)
+// moonFolder.add(moon.rotation, 'y').min(-15).max(10).step(0.1)
+// moonFolder.add(moon.rotation, 'z').min(-15).max(10).step(0.1)
 
 // Camera
 const camera = new THREE.PerspectiveCamera(45, sizes.width / sizes.height, 0.5, 100)
