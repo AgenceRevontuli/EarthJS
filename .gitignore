@@ -1,4 +1,4 @@
 # Node Modules 
 node_modules/
 # Custom 
-/.DS_Store
+.DS_Store

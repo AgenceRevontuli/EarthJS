@@ -16,6 +16,7 @@ const earthHeightTexture = textureLoader.load('/static/textures/earthbump.jpg')
 // Moon Texture 
 const moonTexture = textureLoader.load('/static/textures/moon.jpg')
 const moonBumpTexture = textureLoader.load('/static/textures/moonbump.jpg')
+const starsTexture = textureLoader.load('/static/textures/stars.png')
 
 // Canvas
 const canvas = document.querySelector('canvas.webgl')
@@ -29,8 +30,34 @@ const sizes = {
 // Scene
 const scene = new THREE.Scene()
 
-// Objects 
+/**
+ * Objects
+ */
 
+// Stars
+const starsGeometry = new THREE.BufferGeometry()
+const count = 15000
+const positions = new Float32Array(count * 3)
+
+const starsMaterial = new THREE.PointsMaterial({
+    size: 0.015, 
+    sizeAttenuation: true, 
+    map: starsTexture
+})
+
+for(let i = 0; i < count; i++) {
+    positions[i] = (Math.random() - 0.5) * 10
+}
+
+starsGeometry.setAttribute('position', new THREE.BufferAttribute(positions, 3))
+
+const stars = new THREE.Points(starsGeometry, starsMaterial)
+stars.position.z = -5
+
+
+
+
+// Moon
 const moon = new THREE.Mesh(
     new THREE.SphereGeometry(0.1, 32, 32),
     new THREE.MeshStandardMaterial({
@@ -42,6 +69,7 @@ const moon = new THREE.Mesh(
 moon.position.x = 1.5
 moon.position.y = 0.5
 
+// Cloud
 const cloud = new THREE.Mesh(
     new THREE.SphereGeometry(0.805, 64, 64),
     new THREE.MeshBasicMaterial({
@@ -50,6 +78,7 @@ const cloud = new THREE.Mesh(
     })
 )
 
+// Planet
 const planet = new THREE.Mesh(
     new THREE.SphereGeometry(0.8, 64, 64),
     new THREE.MeshStandardMaterial({ 
@@ -60,7 +89,7 @@ const planet = new THREE.Mesh(
 )
 planet.rotation.y = -1.5
 planet.rotation.x = 0.2
-scene.add(planet, cloud, moon)
+scene.add(planet, cloud, moon, stars)
 
 // Lights 
 const ambientLight = new THREE.PointLight('#fff', 0.1, 100)
@@ -136,6 +165,10 @@ const tick = () =>
     // Animate Cloud Rotation 
     cloud.rotation.x = - Math.sin(elapsedTime * 0.003) 
     cloud.rotation.y = - Math.cos(elapsedTime * 0.003) 
+
+    // Animate Stars 
+    stars.rotation.x = - Math.cos(elapsedTime * 0.001) 
+    stars.rotation.y = - Math.sin(elapsedTime * 0.001)
 
     // Animate Moon 
     moon.position.x = - (Math.cos(elapsedTime * 0.03)) * 1.5
