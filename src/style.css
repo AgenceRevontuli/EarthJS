@@ -1,4 +1,57 @@
+@import url('https://fonts.googleapis.com/css2?family=Cinzel:wght@500&family=Playfair+Display+SC&family=Ubuntu:wght@300&family=Ysabeau+Office:wght@500&display=swap');
+
 html, body {
     margin: 0; 
     padding: 0;
+    background: #101010;
+    overflow: hidden;
+}
+
+.container {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+canvas {
+    position: absolute;
+    
+}
+
+h1 {
+    font-family: "owners-xxwide", sans-serif;
+    color: #fff;
+    font-size: 12rem;
+    margin: 0;
+    text-align: center;
+    width: 100%;
+    opacity: 0.90;
+}
+
+p { 
+    color: #fff;
+    font-family: "owners", sans-serif;
+}
+
+.info-planet {
+    max-width: 1400px;
+    margin: 0 auto;
+    z-index: 1;
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+}
+
+.info-planet p {
+    max-width: 600px;
+    margin: 0 auto;
+    position: absolute;
+    bottom: 80px;
+    right: 80px;
+    font-size: 1.2rem;
+    line-height: 2.4rem;
+    padding: 40px 60px; 
+    background: rgba(0, 0, 0, 0.2);
 }

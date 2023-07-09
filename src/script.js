@@ -43,7 +43,7 @@ moon.position.x = 1.5
 moon.position.y = 0.5
 
 const cloud = new THREE.Mesh(
-    new THREE.SphereGeometry(1.002, 64, 64),
+    new THREE.SphereGeometry(0.805, 64, 64),
     new THREE.MeshBasicMaterial({
         transparent: true,
         alphaMap: cloudAlphaTexture
@@ -51,7 +51,7 @@ const cloud = new THREE.Mesh(
 )
 
 const planet = new THREE.Mesh(
-    new THREE.SphereGeometry(1, 64, 64),
+    new THREE.SphereGeometry(0.8, 64, 64),
     new THREE.MeshStandardMaterial({ 
         map: earthTexture,
         bumpMap: earthHeightTexture, 
@@ -103,7 +103,8 @@ scene.add(camera)
 
 // Renderer
 const renderer = new THREE.WebGLRenderer({
-    canvas: canvas
+    canvas: canvas,
+    alpha: true
 })
 renderer.setSize(sizes.width, sizes.height)
 
@@ -130,7 +131,7 @@ const tick = () =>
     const elapsedTime = clock.getElapsedTime()
 
     // Animate Earth Rotation 
-    planet.rotation.y = - elapsedTime * 0.005
+    planet.rotation.y = - elapsedTime * 0.008
 
     // Animate Cloud Rotation 
     cloud.rotation.x = - Math.sin(elapsedTime * 0.003) 
