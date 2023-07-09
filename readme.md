@@ -8,13 +8,21 @@ After finishing the first two chapter of the e-learning, i've decided to try to 
 My goals was : 
 
 ✅ Launch vanilla install of vite 
+
 ✅ Import Three JS via cli 
+
 ✅ Install the bases files & folders of the project 
+
 ✅ Create an canvas with ThreeJS object 
+
 ✅ Make a artistique scene 
+
 ✅ Create few animation
+
 ✅ Create an realistic project with few controllers 
+
 ✅ Commit all steps 
+
 ✅ Deploy to vercel 
 
 ## Caracteristics 
