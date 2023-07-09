@@ -54,9 +54,6 @@ starsGeometry.setAttribute('position', new THREE.BufferAttribute(positions, 3))
 const stars = new THREE.Points(starsGeometry, starsMaterial)
 stars.position.z = -8
 
-
-
-
 // Moon
 const moon = new THREE.Mesh(
     new THREE.SphereGeometry(0.1, 32, 32),
@@ -89,7 +86,20 @@ const planet = new THREE.Mesh(
 )
 planet.rotation.y = -1.5
 planet.rotation.x = 0.2
-scene.add(planet, cloud, moon, stars)
+
+// Atmosphere 
+const atmosphere = new THREE.Mesh(
+    new THREE.SphereGeometry(0.82, 50, 50),
+    new THREE.MeshStandardMaterial({
+        color: '#6787e7',
+        blending: THREE.AdditiveBlending, 
+        side: THREE.BackSide, 
+        transparent: true, 
+        opacity:0.4
+    })
+)
+
+scene.add(planet, cloud, moon, stars, atmosphere)
 
 // Lights 
 const ambientLight = new THREE.PointLight('#fff', 0.1, 100)
@@ -133,7 +143,8 @@ scene.add(camera)
 // Renderer
 const renderer = new THREE.WebGLRenderer({
     canvas: canvas,
-    alpha: true
+    alpha: true,
+    antialias: true
 })
 renderer.setSize(sizes.width, sizes.height)
 
@@ -163,7 +174,7 @@ const tick = () =>
     planet.rotation.y = - elapsedTime * 0.008
 
     // Animate Cloud Rotation 
-    cloud.rotation.x = - (elapsedTime * 0.01) 
+    // cloud.rotation.x = - (elapsedTime * 0.01) 
     cloud.rotation.y = (elapsedTime * 0.01) 
 
     // Animate Stars 
