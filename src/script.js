@@ -15,6 +15,7 @@ const earthTexture = textureLoader.load('/static/textures/earthmap.jpg')
 const cloudAlphaTexture = textureLoader.load('/static/textures/cloudalpha.jpg')
 const earthHeightTexture = textureLoader.load('/static/textures/earthbump.jpg')
 
+
 // Canvas
 const canvas = document.querySelector('canvas.webgl')
 
@@ -29,7 +30,7 @@ const scene = new THREE.Scene()
 
 // Object
 const cloud = new THREE.Mesh(
-    new THREE.SphereGeometry(1.001, 64, 64),
+    new THREE.SphereGeometry(1.002, 64, 64),
     new THREE.MeshBasicMaterial({
         transparent: true,
         alphaMap: cloudAlphaTexture
@@ -109,6 +110,13 @@ const clock = new THREE.Clock()
 const tick = () =>
 {
     const elapsedTime = clock.getElapsedTime()
+
+    // Animate Earth Rotation 
+    planet.rotation.y = - elapsedTime * 0.005
+
+    // Animate Cloud Rotation 
+    cloud.rotation.x = - Math.sin(elapsedTime * 0.003) 
+    cloud.rotation.y = - Math.cos(elapsedTime * 0.003) 
 
     // Update Controls 
     controls.update()
