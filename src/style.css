@@ -99,3 +99,24 @@ p {
     padding: 40px 60px; 
     background: rgba(0, 0, 0, 0.2);
 }
+
+@media screen and (max-width: 1000px) {
+    nav {
+        display: none;
+    }
+    header {
+        justify-content: center;
+    }
+    h1 { 
+        font-size: 4rem;
+    }
+    .info-planet p {
+        max-width: 800px;
+        bottom: 20px;
+        right: 20px;
+        font-size: 1rem;
+        line-height: 2rem;
+        padding: 40px 40px; 
+        background: rgba(0, 0, 0, 0.2);
+    }
+}
