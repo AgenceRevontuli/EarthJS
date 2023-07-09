@@ -10,13 +10,13 @@ import * as LIL from 'lil-gui'
 
 // Textures 
 const textureLoader = new THREE.TextureLoader()
-const earthTexture = textureLoader.load('/static/textures/earthmap.jpg')
-const cloudAlphaTexture = textureLoader.load('/static/textures/cloudalpha.jpg')
-const earthHeightTexture = textureLoader.load('/static/textures/earthbump.jpg')
+const earthTexture = textureLoader.load('/textures/earthmap.jpg')
+const cloudAlphaTexture = textureLoader.load('/textures/cloudalpha.jpg')
+const earthHeightTexture = textureLoader.load('/textures/earthbump.jpg')
 // Moon Texture 
-const moonTexture = textureLoader.load('/static/textures/moon.jpg')
-const moonBumpTexture = textureLoader.load('/static/textures/moonbump.jpg')
-const starsTexture = textureLoader.load('/static/textures/stars.png')
+const moonTexture = textureLoader.load('/textures/moon.jpg')
+const moonBumpTexture = textureLoader.load('/textures/moonbump.jpg')
+const starsTexture = textureLoader.load('/textures/stars.png')
 
 // Canvas
 const canvas = document.querySelector('canvas.webgl')
